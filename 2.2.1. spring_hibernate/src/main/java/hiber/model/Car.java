@@ -13,8 +13,11 @@ public class Car {
     @Column(name = "model")
     private String model;
 
-    @Column(name = "series")
+    @Column(name = "series", nullable = false)
     private int series;
+
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
+    private User user;
 
     public Long getId() {
         return id;
@@ -45,6 +48,14 @@ public class Car {
 
     public int getSeries() {
         return series;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
